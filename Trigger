@@ -1,1 +1,28 @@
 
+Sincronizada la Cantidad de Álbumes de una Banda: 
+CREATE TRIGGER Sincronizar_Cantidad_Albumes
+AFTER INSERT, UPDATE
+ON Álbumes
+FOR EACH ROW
+AS
+BEGIN
+    DECLARE banda_id INT;
+    DECLARE cantidad_albumes INT;
+    SET banda_id = NEW.id_banda;
+    SELECT COUNT(*) AS cantidad_albumes
+    FROM Álbumes
+    WHERE id_banda = banda_id;
+    UPDATE Bandas
+    SET cantidad_de_canciones = cantidad_albumes
+    WHERE id_banda = banda_id;
+END;
+
+Registrar la Venta de una Entrada: 
+CREATE TRIGGER registrar_venta_entrada
+AFTER INSERT ON Entradas
+FOR EACH ROW
+BEGIN
+    INSERT INTO Registro_Ventas_Entradas (Fecha_Venta, ID_Shows, ID_Comprador)
+    VALUES (CURRENT_TIMESTAMP, NEW.ID_Shows, NEW.ID_Comprador);
+END;
+
