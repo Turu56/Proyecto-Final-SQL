@@ -1,1 +1,44 @@
+Agregar Nueva Banda:
+CREATE PROCEDURE Agregar_nueva_banda(
+    nombre_banda VARCHAR(20),
+    pais_de_origen VARCHAR(20),
+    genero VARCHAR(20),
+    pagina_web VARCHAR(20)
+)
+BEGIN
+    INSERT INTO Bandas (
+        nombre_banda,
+        pais_de_origen,
+        genero,
+        pagina_web
+    )
+    VALUES (
+        @nombre_banda,
+        @pais_de_origen,
+        @genero,
+        @pagina_web
+    );
+END;
+
+Agregar Nuevo Miembro a Banda:
+CREATE PROCEDURE Agregar_nuevo_miembro_a_banda(
+    @nombre VARCHAR(20),
+    @instrumento VARCHAR(20),
+    @fecha_que_se_unio DATE,
+    @id_banda INT
+)
+BEGIN
+    INSERT INTO Miembros (
+        nombre,
+        instrumento,
+        fecha_que_se_unio,
+        id_banda
+    )
+    VALUES (
+        @nombre,
+        @instrumento,
+        @fecha_que_se_unio,
+        @id_banda
+    );
+END;
 
