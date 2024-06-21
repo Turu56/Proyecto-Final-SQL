@@ -1,1 +1,41 @@
 
+Convertir Entradas en Pesos a dólares: 
+CREATE FUNCTION `convertir_entradas_en_pesos_a_dolares`
+(Precio_del_Dolar INT, Id INT)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+	DECLARE Precio_en_Dolares INT;
+    SET Precio_en_Dolares = (Precio_del_Dolar * 
+		(SELECT Precio_en_Pesos 
+    FROM entradas 
+    WHERE (Id = ID_entradas)
+    )
+  );
+	RETURN Precio_en_Dolares;
+END;
+
+Obtener Banda por ID:
+CREATE FUNCTION `Obtener_banda_por_id`
+(id_banda INT)
+RETURNS TABLE
+DETERMINISTIC
+BEGIN
+    DECLARE banda TABLE (
+        id_banda INT,
+        nombre_banda VARCHAR(20),
+        pais_de_origen VARCHAR(20),
+        genero VARCHAR(20),
+        pagina_web VARCHAR(20)
+    );
+    SELECT
+        b.id_banda,
+        b.nombre_banda,
+        b.pais_de_origen,
+        b.genero,
+        b.pagina_web
+    INTO banda
+    FROM Bandas b
+    WHERE b.id_banda = id_banda;
+    RETURN banda;
+END;
