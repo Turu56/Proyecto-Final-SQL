@@ -1,0 +1,90 @@
+use bandas;
+CREATE TABLE IF NOT EXISTS Bandas (
+ID_Banda int not null auto_increment,
+Nombre_de_Banda VARCHAR(20) not null,
+País_de_Origen VARCHAR(20),
+Género VARCHAR(20),
+Pagina_web VARCHAR(20),
+PRIMARY KEY (ID_Banda, Nombre_de_Banda)
+);
+
+CREATE TABLE IF NOT EXISTS Shows(
+ID_Shows int not null auto_increment,
+Pais VARCHAR(20),
+Ciudad VARCHAR(20),
+Fecha date,
+Empresa_Contratista VARCHAR(20),
+ID_Banda int,
+PRIMARY KEY (ID_Shows),
+FOREIGN KEY (ID_Banda)
+REFERENCES bandas(ID_Banda)
+);
+
+CREATE TABLE IF NOT EXISTS Miembros (
+ID_Miembros int not null auto_increment,
+Nombre VARCHAR(20),
+intrumento VARCHAR(20),
+Fecha_que_se_unio date,
+ID_Banda int,
+PRIMARY KEY (ID_Miembros),
+FOREIGN KEY (ID_Banda)
+REFERENCES bandas(ID_Banda)
+);
+
+CREATE TABLE IF NOT EXISTS Instrumentos (
+ID_Instrumento int,
+Tipo VARCHAR(20),
+Marca VARCHAR(20),
+Modelo VARCHAR(20),
+Año date,
+ID_Miembros int,
+PRIMARY KEY (ID_Instrumento),
+FOREIGN KEY (ID_Miembros)
+REFERENCES Miembros(ID_Miembros)
+);
+
+CREATE TABLE IF NOT EXISTS Álbumes(
+ID_álbum int not null auto_increment,
+Nombre VARCHAR(20),
+Año_de_lanzamiento date,
+Productor VARCHAR(20),
+Cantidad_de_Canciones int,
+ID_banda int,
+PRIMARY KEY (ID_álbum),
+FOREIGN KEY (ID_Banda)
+REFERENCES bandas(ID_Banda)
+);
+
+CREATE TABLE IF NOT EXISTS Canciones (
+ID_canción int not null auto_increment,
+Título VARCHAR(20),
+Duración time,
+Cancion_Propia boolean,
+ID_álbum int,
+PRIMARY KEY (ID_canción),
+FOREIGN KEY (ID_álbum)
+REFERENCES Álbumes(ID_álbum)
+);
+
+
+CREATE TABLE IF NOT EXISTS Entradas(
+ID_entrada int not null auto_increment,
+Precio_en_Pesos int,
+Precio_en_Dolares int, 
+ID_Shows int,
+PRIMARY KEY (ID_entrada),
+FOREIGN KEY (ID_Shows)
+REFERENCES Shows(ID_Shows)
+);
+
+CREATE TABLE IF NOT EXISTS Redes_Sociales (
+ID_Redes_Sociales int not null auto_increment,
+X VARCHAR(20),
+Facebook VARCHAR(20),
+Instagram VARCHAR(20),
+TikTok VARCHAR(20),
+ID_Banda int,
+PRIMARY KEY (ID_Redes_Sociales),
+FOREIGN KEY (ID_Banda)
+REFERENCES Bandas(ID_Banda)
+);
