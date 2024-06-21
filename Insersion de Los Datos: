@@ -1,1 +1,43 @@
+use bandas;
+insert into bandas (`bandas`.`ID_Banda`,
+    `bandas`.`Nombre_de_Banda`,
+    `bandas`.`País_de_Origen`,
+    `bandas`.`Género`,
+    `bandas`.`Pagina_web`)
+    values (1, "Arch_Enemy" , "Suecia", "melodic_death_metal", "www.archenemy.net");
 
+select *
+from bandas;
+
+use bandas;
+use miembros;
+insert into miembros (`miembros`.`ID_Miembros`,
+    `miembros`.`Nombre`,
+    `miembros`.`intrumento`,
+    `miembros`.`Fecha_que_se_unio`,
+    `miembros`.`ID_Banda`)
+    values (1, "Michael Amiembros", "guitarra", "1995-01-01", 1);
+    insert into miembros (`miembros`.`ID_Miembros`,
+    `miembros`.`Nombre`,
+    `miembros`.`intrumento`,
+    `miembros`.`Fecha_que_se_unio`,
+    `miembros`.`ID_Banda`)
+    values (2, "Daniel Erlandsson" , "bateria", "1995-01-01", 1);
+    insert into miembros (`miembros`.`ID_Miembros`,
+    `miembros`.`Nombre`,
+    `miembros`.`intrumento`,
+    `miembros`.`Fecha_que_se_unio`,
+    `miembros`.`ID_Banda`)
+    values (3, "Sharlee D'Angelo" , "bajo", "1998-01-01", 1);
+    insert into miembros (`miembros`.`ID_Miembros`,
+    `miembros`.`Nombre`,
+    `miembros`.`intrumento`,
+    `miembros`.`Fecha_que_se_unio`,
+    `miembros`.`ID_Banda`)
+    values (4, "Alissa White-Gluz" , "Voz", "2014-01-01", 1);
+    insert into miembros (`miembros`.`ID_Miembros`,
+    `miembros`.`Nombre`,
+    `miembros`.`intrumento`,
+    `miembros`.`Fecha_que_se_unio`,
+    `miembros`.`ID_Banda`)
+	values (5, "Joey Concepcion" , "guitarra", "2023-01-01", 1);
