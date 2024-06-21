@@ -1,1 +1,37 @@
+Guitarristas:
+CREATE OR REPLACE VIEW Guitarristas as
+	(SELECT *
+  FROM miembros
+  WHERE (intrumento = "guitarra")
+  );
+
+Bateristas:
+CREATE OR REPLACE VIEW Bateristas as
+  (SELECT *
+  FROM miembros
+  WHERE (intrumento = "bateria")
+  );
+
+Información General de Bandas:
+CREATE OR REPLACE VIEW informacion_general_bandas AS
+  (SELECT ID_Banda, Nombre_de_Banda, Pais_de_Origen, Genero, Pagina_web
+  FROM Bandas
+  );
+
+Próximos Shows por Banda:
+CREATE OR REPLACE VIEW proximos_shows_banda AS
+  (SELECT s.ID_Shows, s.Pais, s.Ciudad, s.Fecha, s.Empresa_Contratista, b.Nombre_de_Banda
+  FROM Shows s
+    JOIN Bandas b ON s.ID_Banda = b.ID_Banda
+  WHERE (s.Fecha >= CURRENT_DATE)
+  );
+
+Miembros de una Banda: 
+CREATE OR REPLACE VIEW miembros_banda AS
+  (SELECT m.ID_Miembros, m.Nombre, m.Instrumento, m.Fecha_que_se_unio, b.Nombre_de_Banda
+  FROM Miembros m
+    JOIN Bandas b ON m.ID_Banda = b.ID_Banda
+  WHERE (b.ID_Banda = [ID_BANDA_ESPECÍFICA])
+  );
+
 
